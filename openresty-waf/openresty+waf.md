@@ -86,33 +86,31 @@ For information pertaining to the compilation and installation of libmodsecurity
 在安装modsecurity-nginx之前需要先安装modsecurity, 安装步骤:
 >参考资料:https://github.com/SpiderLabs/ModSecurity/wiki/Compilation-recipes-for-v3.x#ubuntu-1504
 ```bash
-sudo apt-get -y install bison curl doxygen libyajl-dev libgeoip-dev libtool dh-autoreconf libcurl4-gnutls-dev libxml2 libpcre++-dev libxml2-dev openssl git libssl-dev
-
-cd /opt/
-git clone https://github.com/SpiderLabs/ModSecurity
-cd ModSecurity/
-git checkout -b v3/master origin/v3/master
-sh build.sh
-git submodule update --init --recursive  #[for bindings/python, others/libinjection, test/test-cases/secrules-language-tests]
-./configure
-make
-make install
-
-安装输出结果:
-Libraries have been installed in:  
-   /usr/local/modsecurity/lib  
-If you ever happen to want to link against installed libraries  
-in a given directory, LIBDIR, you must either use libtool, and  
-specify the full pathname of the library, or use the '-LLIBDIR'  
-flag during linking and do at least one of the following:  
-   - add LIBDIR to the 'LD_LIBRARY_PATH' environment variable  
-   during execution  
-   - add LIBDIR to the 'LD_RUN_PATH' environment variable  
-   during linking  
-   - use the '-Wl,-rpath -Wl,LIBDIR' linker flag  
-   have your system administrator add LIBDIR to '/etc/ld.so.conf'  
-See any operating system documentation about shared libraries for  
-more information, such as the ld(1) and ld.so(8) manual pages.  
+››››sudo apt-get -y install bison curl doxygen libyajl-dev libgeoip-dev libtool dh-autoreconf ››››libcurl4-gnutls-dev libxml2 libpcre++-dev libxml2-dev openssl git libssl-dev
+››››
+››››cd /opt/
+››››git clone https://github.com/SpiderLabs/ModSecurity
+››››cd ModSecurity/
+››››git checkout -b v3/master origin/v3/master
+››››sh build.sh
+››››git submodule update --init --recursive  #[for bindings/python, others/libinjection, ››››test/test-cases/secrules-language-tests]
+››››./configure
+››››make
+››››make install
+    Libraries have been installed in:  
+       /usr/local/modsecurity/lib  
+    If you ever happen to want to link against installed libraries  
+    in a given directory, LIBDIR, you must either use libtool, and  
+    specify the full pathname of the library, or use the '-LLIBDIR'  
+    flag during linking and do at least one of the following:  
+       - add LIBDIR to the 'LD_LIBRARY_PATH' environment variable  
+       during execution  
+       - add LIBDIR to the 'LD_RUN_PATH' environment variable  
+       during linking  
+       - use the '-Wl,-rpath -Wl,LIBDIR' linker flag  
+       have your system administrator add LIBDIR to '/etc/ld.so.conf'  
+    See any operating system documentation about shared libraries for  
+    more information, such as the ld(1) and ld.so(8) manual pages.  
 ```
 
 ModeSecurity 被安装到了:/usr/local/modsecurity/目录下, header和lib都在这个目录下
@@ -141,7 +139,7 @@ For more information on compiling dynamic modules, see Compiling Dynamic Modules
 
 先安装一些乱七八糟的库,然后再编译modesecurity_module(modsecurity-nginx)
 ```bash
-sudo apt-get install apache2-dev autoconf automake build-essential bzip2 \
+››››sudo apt-get install apache2-dev autoconf automake build-essential bzip2 \
     checkinstall devscripts flex g++ gcc git graphicsmagick-imagemagick-compat \ 
     graphicsmagick-libmagick-dev-compat libaio-dev libaio1 libass-dev \
     libatomic-ops-dev libavcodec-dev libavdevice-dev libavfilter-dev \
@@ -155,32 +153,97 @@ sudo apt-get install apache2-dev autoconf automake build-essential bzip2 \
     libxml2-dev libxslt-dev libxslt1-dev libxslt1.1 libxvidcore-dev libxvidcore4 \
     libyajl-dev make openssl perl pkg-config tar texi2html unzip zip \
     zlib1g-dev
-cd openresty-1.15.8.3/
-./configure --with-compat --add-dynamic-module=/data/openresty-waf/ModSecurity-nginx
-输出结果:
--------------------------------
-Configuration summary
-  + using system PCRE library
-  + using system OpenSSL library
-  + using system zlib library
+››››cd openresty-1.15.8.3/
+››››./configure --with-compat --add-dynamic-module=/data/openresty-waf/ModSecurity-nginx
+    Configuration summary
+      + using system PCRE library
+      + using system OpenSSL library
+      + using system zlib library
 
-  nginx path prefix: "/usr/local/openresty/nginx"
-  nginx binary file: "/usr/local/openresty/nginx/sbin/nginx"
-  nginx modules path: "/usr/local/openresty/nginx/modules"
-  nginx configuration prefix: "/usr/local/openresty/nginx/conf"
-  nginx configuration file: "/usr/local/openresty/nginx/conf/nginx.conf"
-  nginx pid file: "/usr/local/openresty/nginx/logs/nginx.pid"
-  nginx error log file: "/usr/local/openresty/nginx/logs/error.log"
-  nginx http access log file: "/usr/local/openresty/nginx/logs/access.log"
-  nginx http client request body temporary files: "client_body_temp"
-  nginx http proxy temporary files: "proxy_temp"
-  nginx http fastcgi temporary files: "fastcgi_temp"
-  nginx http uwsgi temporary files: "uwsgi_temp"
-  nginx http scgi temporary files: "scgi_temp"
--------------------------------
-ln -s /usr/bin/make /usr/bin/gmake
-gmake
-gmake install
+      nginx path prefix: "/usr/local/openresty/nginx"
+      nginx binary file: "/usr/local/openresty/nginx/sbin/nginx"
+      nginx modules path: "/usr/local/openresty/nginx/modules"
+      nginx configuration prefix: "/usr/local/openresty/nginx/conf"
+      nginx configuration file: "/usr/local/openresty/nginx/conf/nginx.conf"
+      nginx pid file: "/usr/local/openresty/nginx/logs/nginx.pid"
+      nginx error log file: "/usr/local/openresty/nginx/logs/error.log"
+      nginx http access log file: "/usr/local/openresty/nginx/logs/access.log"
+      nginx http client request body temporary files: "client_body_temp"
+      nginx http proxy temporary files: "proxy_temp"
+      nginx http fastcgi temporary files: "fastcgi_temp"
+      nginx http uwsgi temporary files: "uwsgi_temp"
+      nginx http scgi temporary files: "scgi_temp"
+››››ln -s /usr/bin/make /usr/bin/gmake
+››››gmake
+    objs/addon/src/ngx_http_modsecurity_module.o \
+    objs/addon/src/ngx_http_modsecurity_pre_access.o \
+    objs/addon/src/ngx_http_modsecurity_header_filter.o \
+    objs/addon/src/ngx_http_modsecurity_body_filter.o \
+    objs/addon/src/ngx_http_modsecurity_log.o \
+    objs/addon/src/ngx_http_modsecurity_rewrite.o \
+    objs/ngx_http_modsecurity_module_modules.o \
+    -L/data/openresty-waf/openresty-1.15.8.3/build/luajit-root/usr/local/openresty/luajit/lib -L/data/openresty-waf/openresty-1.15.8.3/build/luajit-root/usr/local/openresty/luajit/lib -Wl,-rpath,/usr/local/openresty/luajit/lib -Wl,-rpath,/usr/local/modsecurity/lib -L/usr/local/modsecurity/lib -lmodsecurity \
+    -shared
+    sed -e "s|%%PREFIX%%|/usr/local/openresty/nginx|" \
+        -e "s|%%PID_PATH%%|/usr/local/openresty/nginx/logs/nginx.pid|" \
+        -e "s|%%CONF_PATH%%|/usr/local/openresty/nginx/conf/nginx.conf|" \
+        -e "s|%%ERROR_LOG_PATH%%|/usr/local/openresty/nginx/logs/error.log|" \
+        < docs/man/nginx.8 > objs/nginx.8
+    gmake[2]: Leaving directory '/data/openresty-waf/openresty-1.15.8.3/build/nginx-1.15.8'
+    gmake[1]: Leaving directory '/data/openresty-waf/openresty-1.15.8.3/build/nginx-1.15.8'
+››››gmake install
+    gmake[2]: Entering directory '/data/openresty-waf/openresty-1.15.8.3/build/nginx-1.15.8'
+    test -d '/usr/local/openresty/nginx' || mkdir -p '/usr/local/openresty/nginx'
+    test -d '/usr/local/openresty/nginx/sbin' \
+        || mkdir -p '/usr/local/openresty/nginx/sbin'
+    test ! -f '/usr/local/openresty/nginx/sbin/nginx' \
+        || mv '/usr/local/openresty/nginx/sbin/nginx' \
+            '/usr/local/openresty/nginx/sbin/nginx.old'
+    cp objs/nginx '/usr/local/openresty/nginx/sbin/nginx'
+    test -d '/usr/local/openresty/nginx/conf' \
+        || mkdir -p '/usr/local/openresty/nginx/conf'
+    cp conf/koi-win '/usr/local/openresty/nginx/conf'
+    cp conf/koi-utf '/usr/local/openresty/nginx/conf'
+    cp conf/win-utf '/usr/local/openresty/nginx/conf'
+    test -f '/usr/local/openresty/nginx/conf/mime.types' \
+        || cp conf/mime.types '/usr/local/openresty/nginx/conf'
+    cp conf/mime.types '/usr/local/openresty/nginx/conf/mime.types.default'
+    test -f '/usr/local/openresty/nginx/conf/fastcgi_params' \
+        || cp conf/fastcgi_params '/usr/local/openresty/nginx/conf'
+    cp conf/fastcgi_params \
+        '/usr/local/openresty/nginx/conf/fastcgi_params.default'
+    test -f '/usr/local/openresty/nginx/conf/fastcgi.conf' \
+        || cp conf/fastcgi.conf '/usr/local/openresty/nginx/conf'
+    cp conf/fastcgi.conf '/usr/local/openresty/nginx/conf/fastcgi.conf.default'
+    test -f '/usr/local/openresty/nginx/conf/uwsgi_params' \
+        || cp conf/uwsgi_params '/usr/local/openresty/nginx/conf'
+    cp conf/uwsgi_params \
+        '/usr/local/openresty/nginx/conf/uwsgi_params.default'
+    test -f '/usr/local/openresty/nginx/conf/scgi_params' \
+        || cp conf/scgi_params '/usr/local/openresty/nginx/conf'
+    cp conf/scgi_params \
+        '/usr/local/openresty/nginx/conf/scgi_params.default'
+    test -f '/usr/local/openresty/nginx/conf/nginx.conf' \
+        || cp conf/nginx.conf '/usr/local/openresty/nginx/conf/nginx.conf'
+    cp conf/nginx.conf '/usr/local/openresty/nginx/conf/nginx.conf.default'
+    test -d '/usr/local/openresty/nginx/logs' \
+        || mkdir -p '/usr/local/openresty/nginx/logs'
+    test -d '/usr/local/openresty/nginx/logs' \
+        || mkdir -p '/usr/local/openresty/nginx/logs'
+    test -d '/usr/local/openresty/nginx/html' \
+        || cp -R docs/html '/usr/local/openresty/nginx'
+    test -d '/usr/local/openresty/nginx/logs' \
+        || mkdir -p '/usr/local/openresty/nginx/logs'
+    test -d '/usr/local/openresty/nginx/modules' \
+        || mkdir -p '/usr/local/openresty/nginx/modules'
+    test ! -f '/usr/local/openresty/nginx/modules/ngx_http_modsecurity_module.so' \
+        || mv '/usr/local/openresty/nginx/modules/ngx_http_modsecurity_module.so' \
+            '/usr/local/openresty/nginx/modules/ngx_http_modsecurity_module.so.old'
+    cp objs/ngx_http_modsecurity_module.so '/usr/local/openresty/nginx/modules/ngx_http_modsecurity_module.so'
+    gmake[2]: Leaving directory '/data/openresty-waf/openresty-1.15.8.3/build/nginx-1.15.8'
+    gmake[1]: Leaving directory '/data/openresty-waf/openresty-1.15.8.3/build/nginx-1.15.8'
+    mkdir -p /usr/local/openresty/site/lualib /usr/local/openresty/site/pod /usr/local/openresty/site/manifest
+    ln -sf /usr/local/openresty/nginx/sbin/nginx /usr/local/openresty/bin/openresty
 ```
 
 
