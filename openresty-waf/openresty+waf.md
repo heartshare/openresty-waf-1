@@ -139,7 +139,7 @@ There are over 120 modules for NGINX contributed by the open source community, a
 them into our NGINX builds, or those of an OS vendor, without having to compile NGINX from source. 
 For more information on compiling dynamic modules, see Compiling Dynamic Modules for NGINX Plus.
 
-先安装一些乱七八糟的库,然后再编译modesecurity_module
+先安装一些乱七八糟的库,然后再编译modesecurity_module(modsecurity-nginx)
 ```bash
 sudo apt-get install apache2-dev autoconf automake build-essential bzip2 \
     checkinstall devscripts flex g++ gcc git graphicsmagick-imagemagick-compat \ 
